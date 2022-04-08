@@ -7,15 +7,15 @@ import "./App.css";
 function App() {
   const [item, setItem] = useState("");
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("items")) || []
+    JSON.parse(localStorage.getItem("items")) || [] 
   );
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
-  }, [item]);
+  }, [items]);
 
   const newItem = () => {
-    if (item.trim() !== "") {
+    if (item.trim() !== '') {
       const newItem = {
         id: uuidv4(),
         item,
@@ -24,7 +24,7 @@ function App() {
       };
 
       setItems((items) => [...items, newItem]);
-      setItem("");
+      setItem('');
     } else {
       alert("Enter text...");
       setItem("");
@@ -36,9 +36,9 @@ function App() {
   };
 
   const updatePos = (data, index) => {
-    let newArray = [...items]
+    let newArray = [...items];
     newArray[index].defaultPos = {x: data.x, y: data.y};
-    setItems(newArray);
+    setItem(newArray);
   };
 
   const keyPress = (e) => {
@@ -52,7 +52,7 @@ function App() {
     <div className="App">
       <div className="wrapper">
         <input
-          value={item}
+          value={item.item}
           type="text"
           placeholder="Enter text..."
           onChange={(e) => setItem(e.target.value)}
